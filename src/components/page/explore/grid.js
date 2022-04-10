@@ -1,12 +1,13 @@
 import React from 'react';
+// import { CardWithStats } from '../explore/item'
 import { CardWithStats } from './item'
 
 import { Grid, Space, Input } from '@mantine/core';
-import { BreadcrumbsComponent } from '../breadcrumb'
+import { BreadcrumbsComponent } from '../../common/breadcrumb'
 import {  ChevronRight } from 'tabler-icons-react';
 
 
-export function GridAsymmetrical() {
+export function Explore() {
   const mobiles = {'XiaomiRedmi Note 11 Pro 8GB': 
   
   {'price': 'Rs. 59,999',

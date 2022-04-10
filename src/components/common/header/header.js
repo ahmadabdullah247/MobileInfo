@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 
-export function HeaderSearch({ opened, setOpened }) {
+export function CommonHeader({ opened, setOpened }) {
   // const [opened, toggleOpened] = useBooleanToggle(false);
   const { classes } = useStyles();
   // const [setOpened] = useState(false);

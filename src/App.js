@@ -1,11 +1,9 @@
-import { Main } from './components/main/main'
-
+import { Main } from './components/page/index'
 
 function App() {
   return (
     <div className="App">
         <Main/>
-        
     </div>
   );
 }

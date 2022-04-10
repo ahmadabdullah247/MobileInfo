@@ -136,7 +136,7 @@ const links = [
   { icon: User, label: 'Contacts' },
 ];
 
-export function NavbarSearch({hidden}) {
+export function CommonNavbar({hidden}) {
   const { classes } = useStyles();
   const mockdata = [
   {
