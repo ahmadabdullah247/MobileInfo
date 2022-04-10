@@ -1,7 +1,8 @@
 import React from 'react';
-import { createStyles, Input, Group, Container } from '@mantine/core';
-import { ChevronRight } from 'tabler-icons-react';
-import { BreadcrumbsComponent } from '../breadcrumb'
+import { createStyles, Header, Autocomplete, 
+        Group, Burger, MediaQuery } from '@mantine/core';
+import { Search } from 'tabler-icons-react';
+import { MantineLogo } from '../_logo';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -44,31 +45,45 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface SiteHeaderProps {
+interface HeaderSearchProps {
   links: { link: string; label: string }[];
 }
 
-export function SiteHeader({ links }: SiteHeaderProps) {
-    const { classes, theme } = useStyles();
+export function HeaderSearch({ opened, setOpened }: HeaderSearchProps) {
+  // const [opened, toggleOpened] = useBooleanToggle(false);
+  const { classes } = useStyles();
+  // const [setOpened] = useState(false);
 
+  return (
+    <Header height={56} className={classes.header} mb={120}>
+      <div className={classes.inner}>
+        <Group>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                size="sm"
+                // color={theme.colors.gray[6]}
+                mr="xl"
+              />
+            </MediaQuery>
+          <MantineLogo />
+        </Group>
 
-    return (
-        <>
-        <Container size="xl" className={classes.inner}>
-            <Group>
-              <BreadcrumbsComponent/>
-            </Group>
-
-            <Group>
-              <Input component="select" rightSection={<ChevronRight className={classes.chevron} size={14} style={{transform: `rotate(${theme.dir === 'rtl' ? -90 : 90}deg)`}} />}>
-                <option value="Most Popular">Most Popular</option>
-                <option value="New Arrivals">New Arrivals</option>
-                <option value="Coming Soon">Coming Soon</option>
-                <option value="Price Hight to Low">Price Hight to Low</option>
-                <option value="Price Low to High">Price Low to High</option>
-              </Input>
-            </Group>
-        </Container>
-        </>
-    );
+        <Group>
+          <Group ml={50} spacing={5} className={classes.links}>
+            {/* {items} */}
+            <a key='Home' href='/' className={classes.link} onClick={(event) => event.preventDefault()}>Home</a>
+            <a key='Compare' href='/compare' className={classes.link} onClick={(event) => event.preventDefault()}>Compare</a>
+          </Group>
+          <Autocomplete
+            className={classes.search}
+            placeholder="Search"
+            icon={<Search size={16} />}
+            data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
+          />
+        </Group>
+      </div>
+    </Header>
+  );
 }

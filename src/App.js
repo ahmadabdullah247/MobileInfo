@@ -1,14 +1,11 @@
 import { Main } from './components/main/main'
 
 
-
 function App() {
   return (
-      <div className="App">
-\
-          <Main/>
-        {/* <Footer></Footer> */}
-      </div>
+    <div className="App">
+        <Main/>
+    </div>
   );
 }
 
