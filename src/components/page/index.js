@@ -7,6 +7,8 @@ import { Footer } from '../common/footer/footer'
 import { TableReviews } from './detail/detail'
 import { Explore } from './explore/grid'
 import { Error } from './error/404'
+import { ContactUs } from './contact/contactUs'
+
 
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
@@ -26,8 +28,8 @@ export function Main() {
         navbar={ <CommonNavbar hidden={!opened}></CommonNavbar> }
       >
           <Routes>
-            <Route path="/about" element={ <Explore/>} />
-            <Route path="/detail" element={ <TableReviews/>} />
+            <Route path="/contact" element={ <ContactUs/>} />
+            <Route path="/compare" element={ <TableReviews/>} />
             <Route path="/error" element={ <Error/>} />
             <Route path="/" element={<Explore/>} />
           </Routes>

@@ -69,9 +69,9 @@ export function CommonHeader({ opened, setOpened }) {
           <MantineLogo />
         </Group>
         <Group ml={50} spacing={5} className={classes.links}>
-          <Link key='Home' to="/" className={classes.link} onClick={(event) => event.preventDefault()}>Home</Link>
-          <Link key='Compare' to="/compare" className={classes.link} onClick={(event) => event.preventDefault()}>Compare</Link>
-          <Link key='About' to="/about" className={classes.link} onClick={(event) => event.preventDefault()}>About</Link>
+          <Link key='Home' to="/" className={classes.link}>Home</Link>
+          <Link key='Compare' to="/compare" className={classes.link}>Compare</Link>
+          <Link key='Contact' to="/contact" className={classes.link}>Contact Us</Link>
         </Group>  
       </div>
     </Header>

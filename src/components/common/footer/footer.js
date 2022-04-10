@@ -1,166 +1,76 @@
 import React from 'react';
-import { createStyles, Text, Container, ActionIcon, Group } from '@mantine/core';
-import { BrandTwitter, BrandYoutube, BrandInstagram, } from 'tabler-icons-react';
-import { MantineLogo } from '../_logo';
+import { createStyles, Container, Group, Anchor, Text } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    marginTop: 100,
-    paddingTop: theme.spacing.xl * 2,
-    paddingBottom: theme.spacing.xl * 2,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    marginTop: 120,
     borderTop: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
   },
 
-  logo: {
-    maxWidth: 200,
-
-    [theme.fn.smallerThan('sm')]: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  },
-
-  description: {
-    marginTop: 5,
-
-    [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.xs,
-      textAlign: 'center',
-    },
-  },
-
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
-
-    [theme.fn.smallerThan('md')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  },
-
-  groups: {
-    display: 'flex',
-    flexWrap: 'wrap',
-
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  wrapper: {
-    width: 160,
-  },
-
-  link: {
-    display: 'block',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
-    fontSize: theme.fontSizes.sm,
-    paddingTop: 3,
-    paddingBottom: 3,
-
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-
-  title: {
-    fontSize: theme.fontSizes.lg,
-    fontWeight: 700,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    marginBottom: theme.spacing.xs / 2,
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-  },
-
-  afterFooter: {
-    display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: theme.spacing.xl,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
 
-    [theme.fn.smallerThan('sm')]: {
+    [theme.fn.smallerThan('xs')]: {
       flexDirection: 'column',
     },
   },
 
-  social: {
-    [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.xs,
+  links: {
+    [theme.fn.smallerThan('xs')]: {
+      marginTop: theme.spacing.md,
     },
   },
+  link: {
+    display: 'block',
+    lineHeight: 1,
+    padding: '8px 12px',
+    borderRadius: theme.radius.sm,
+    textDecoration: 'none',
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 500,
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    }
+  }
 }));
 
 interface FooterProps {
-  data: {
-    title: string;
-    links: { label: string; link: string }[];
-  }[];
+  links: { link: string; label: string }[];
 }
 
-export function Footer({ data }: FooterProps) {
+export function Footer({ links }: FooterProps) {
   const { classes } = useStyles();
-  data = [{title:'Links', links:[{ link: '/home', label: 'Home' },
-  { link: '/explore', label: 'Explore' },
-  { link: '/about', label: 'About' }]}, {title:'Featured', links:[{ link: '/Partnerships', label: 'Partnerships' },
-  { link: '/privacy', label: 'Privacy Policy' },
-  { link: '/Terms and Conditions', label: 'Terms and Conditions' }]}]
-  const groups = data.map((group) => {
+  links = [{ link: '/', label: 'Home' },{ link: '/compare', label: 'Compare' },{ link: '/about', label: 'About' },]
 
-    const links = group.links.map((link, index) => (
-      <Text key={index}
-        className={classes.link}
-        component="a"
-        href={link.link}
-        onClick={(event) => event.preventDefault()}
-      >
-        {link.label}
-      </Text>
-    ));
+  const items = links.map((link) => (
+    <Anchor
+      color="dimmed"
+      key={link.label}
+      href={link.link}
+      size="sm"
+      
+    >
+      {link.label}
+    </Anchor>
+  ));
+  console.log({items})
 
-    return (
-      <div className={classes.wrapper} key={group.title}>
-        <Text className={classes.title}>{group.title}</Text>
-        {links}
-      </div>
-    );
-  });
   return (
-    <footer className={classes.footer}>
+    <div className={classes.footer}>
       <Container className={classes.inner}>
-        <div className={classes.logo}>
-          <MantineLogo />
-          <Text size="xs" color="dimmed" className={classes.description}>
-            Build fully functional accessible web applications faster than ever
-          </Text>
-        </div>
-        <div className={classes.groups}>{groups}</div>
-      </Container>
-      <Container className={classes.afterFooter}>
         <Text color="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved.
+          © 2020 mantine.dev. All rights reserved by TDN.
         </Text>
-
-        <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
-            <BrandTwitter size={18} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <BrandYoutube size={18} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <BrandInstagram size={18} />
-          </ActionIcon>
-        </Group>
+        <Group >{items}</Group>
       </Container>
-    </footer>
+    </div>
   );
 }

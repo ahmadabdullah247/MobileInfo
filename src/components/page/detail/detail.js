@@ -1,17 +1,10 @@
 import React from 'react';
-import { createStyles, Table, ScrollArea,
-        Group, Avatar, Image,Text,Grid, Space } from '@mantine/core';
+import { Table, ScrollArea,
+        Group, Avatar, Image,Text, Space } from '@mantine/core';
 import { Star } from 'tabler-icons-react';
 import { BreadcrumbsComponent } from '../../common/breadcrumb'
 import { InputWithButton } from './compareWith'
 
-const useStyles = createStyles((theme) => ({
-  progressBar: {
-    '&:not(:first-of-type)': {
-      borderLeft: `3px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
-    },
-  },
-}));
 
 interface TableReviewsProps {
   data: {
