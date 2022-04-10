@@ -4,6 +4,7 @@ import { AppShell } from '@mantine/core';
 import { CommonHeader } from '../common/header/header'
 import { CommonNavbar } from '../common/navbar/navbar'
 import { Footer } from '../common/footer/footer'
+import { TableReviews } from './detail/detail'
 import { Explore } from './explore/grid'
 import { Error } from './error/404'
 
@@ -26,7 +27,7 @@ export function Main() {
       >
           <Routes>
             <Route path="/about" element={ <Explore/>} />
-            <Route path="/compare" element={ <Error/>} />
+            <Route path="/detail" element={ <TableReviews/>} />
             <Route path="/error" element={ <Error/>} />
             <Route path="/" element={<Explore/>} />
           </Routes>
