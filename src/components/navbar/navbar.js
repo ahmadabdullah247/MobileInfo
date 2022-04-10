@@ -9,6 +9,7 @@ import {
   Badge,
   Text,
   Group,
+  ScrollArea
 } from '@mantine/core';
 import { Bulb, User, Checkbox, Search,
   DeviceMobile,
@@ -259,14 +260,14 @@ export function NavbarSearch({hidden}) {
         <div className={classes.mainLinks}>{mainLinks}</div>
       </Navbar.Section>
 
-      <Navbar.Section className={classes.section}>
+      <Navbar.Section className={classes.section} grow component={ScrollArea} mx="-xs" px="xs">
         <Group className={classes.collectionsHeader} position="apart">
           <Text size="xs" weight={500} color="dimmed">
             Filters
           </Text>
         </Group>
 
-        <div className={classes.linksInner}>
+        <div  className={classes.linksInner}>
           { mockdata.map((item) => <LinksGroup {...item} key={item.label} />) }
           <PriceFilter  {...{label: 'Price', icon: CurrencyDollar, initiallyOpened:true}} key={'price'} />
           <ColorFilter  {...{label: 'Color', icon: ColorPicker, initiallyOpened:true, colors:colors}} key={'color'} />

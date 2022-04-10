@@ -45,11 +45,10 @@ const useStyles = createStyles((theme) => ({
 interface LinksGroupProps {
   icon: TablerIcon;
   label: string;
-  initiallyOpened?: boolean;
-  links?: { label: string; link: string }[];
+  initiallyOpened: boolean;
 }
 
-export function PriceFilter({ icon: Icon, label, initiallyOpened, links }: LinksGroupProps) {
+export function PriceFilter({ icon: Icon, label, initiallyOpened }: LinksGroupProps) {
   const { classes, theme } = useStyles();
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === 'ltr' ? ChevronRight : ChevronLeft;

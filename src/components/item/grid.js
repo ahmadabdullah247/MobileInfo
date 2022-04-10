@@ -30847,7 +30847,7 @@ export function GridAsymmetrical() {
             let title = desc[1].split('-').join(' ')
   
             return (
-              <Grid.Col md={6} lg={3}>
+              <Grid.Col md={6} lg={3} key={mobiles[key]['href']}>
                     <CardWithStats
                     image="https://i.hood.de/fit-in/3000x3000/filters:no_upscale()/images/50144/501441090.jpg"
                     title={title}

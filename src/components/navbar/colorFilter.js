@@ -55,13 +55,7 @@ export function ColorFilter({ icon: Icon, label, initiallyOpened, colors }: Colo
   // const theme = useMantineTheme();
   const [checked, setChecked] = useState(true);
   const ChevronIcon = theme.dir === 'ltr' ? ChevronRight : ChevronLeft;
-  console.log(colors.map(color=>{
-    return (
-      <ColorSwatch component="button" color={color} onClick={() => setChecked((c) => !c)} style={{ color: '#fff', cursor: 'pointer' }}>
-            {checked && <Check  size={14}/>}
-      </ColorSwatch>
-    )
-  }))
+
 return (
     <>
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
@@ -87,7 +81,7 @@ return (
           {
             colors.map(color=>{
               return (
-                <ColorSwatch component="button" color={color} onClick={() => setChecked((c) => !c)} style={{ color: '#fff', cursor: 'pointer' }}>
+                <ColorSwatch key={color} component="button" color={color} onClick={() => setChecked((c) => !c)} style={{ color: '#fff', cursor: 'pointer' }}>
                       {checked && <Check  size={14}/>}
                 </ColorSwatch>
               )

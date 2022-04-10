@@ -1,8 +1,10 @@
 import React from 'react';
-import { createStyles, Header, Autocomplete, 
+import { createStyles, Header, 
         Group, Burger, MediaQuery } from '@mantine/core';
-import { Search } from 'tabler-icons-react';
+
 import { MantineLogo } from '../_logo';
+import { Link } from "react-router-dom";
+
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -45,11 +47,8 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface HeaderSearchProps {
-  links: { link: string; label: string }[];
-}
 
-export function HeaderSearch({ opened, setOpened }: HeaderSearchProps) {
+export function HeaderSearch({ opened, setOpened }) {
   // const [opened, toggleOpened] = useBooleanToggle(false);
   const { classes } = useStyles();
   // const [setOpened] = useState(false);
@@ -69,20 +68,11 @@ export function HeaderSearch({ opened, setOpened }: HeaderSearchProps) {
             </MediaQuery>
           <MantineLogo />
         </Group>
-
-        <Group>
-          <Group ml={50} spacing={5} className={classes.links}>
-            {/* {items} */}
-            <a key='Home' href='/' className={classes.link} onClick={(event) => event.preventDefault()}>Home</a>
-            <a key='Compare' href='/compare' className={classes.link} onClick={(event) => event.preventDefault()}>Compare</a>
-          </Group>
-          <Autocomplete
-            className={classes.search}
-            placeholder="Search"
-            icon={<Search size={16} />}
-            data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
-          />
-        </Group>
+        <Group ml={50} spacing={5} className={classes.links}>
+          <Link key='Home' to="/" className={classes.link} onClick={(event) => event.preventDefault()}>Home</Link>
+          <Link key='Compare' to="/compare" className={classes.link} onClick={(event) => event.preventDefault()}>Compare</Link>
+          <Link key='About' to="/about" className={classes.link} onClick={(event) => event.preventDefault()}>About</Link>
+        </Group>  
       </div>
     </Header>
   );
