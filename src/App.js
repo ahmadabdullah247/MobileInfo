@@ -1,4 +1,4 @@
-import { Main } from './components/page/index'
+import { Main } from './components/index'
 
 function App() {
   return (

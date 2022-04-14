@@ -5,6 +5,7 @@ import { CardWithStats } from './item'
 import { Grid, Space, Input } from '@mantine/core';
 import { BreadcrumbsComponent } from '../../common/breadcrumb'
 import {  ChevronRight } from 'tabler-icons-react';
+import { Link } from "react-router-dom";
 
 
 export function Explore() {
@@ -30849,6 +30850,7 @@ export function Explore() {
   
             return (
               <Grid.Col md={6} lg={3} key={mobiles[key]['href']}>
+                <Link key={mobiles[key]['href']} to={'/detail/'+brand.toLowerCase()+'/'+title.toLowerCase()} style={{textDecoration:'none'}}>
                     <CardWithStats
                     image="https://i.hood.de/fit-in/3000x3000/filters:no_upscale()/images/50144/501441090.jpg"
                     title={title}
@@ -30859,7 +30861,8 @@ export function Explore() {
                         { "title": "Avg. rating", "value": "4.75" }
                       ]
                     }
-                    ></CardWithStats>
+                    />
+                </Link>
               </Grid.Col>
             )
 

@@ -33,13 +33,6 @@ interface CardWithStatsProps {
 
 export function CardWithStats({ image, title, description, stats }: CardWithStatsProps) {
   const { classes } = useStyles();
-  // image =  "https://i.hood.de/fit-in/3000x3000/filters:no_upscale()/images/50144/501441090.jpg"
-  // title= "Iphone 13"
-  // description=  "Apple • 2022 • Flagship"
-  // stats= [
-  //   { "title": "Price", "value": "$ 1200"},
-  //   { "title": "Avg. rating", "value": "4.75" }
-  // ]
   const items = stats.map((stat) => (
     <div key={stat.title}>
       <Text size="xs" color="dimmed">
@@ -53,7 +46,7 @@ export function CardWithStats({ image, title, description, stats }: CardWithStat
 
   return (
     <Card withBorder p="lg" className={classes.card}>
-      <Card.Section withBorder p="sm">
+      <Card.Section p="xl">
         <Image src={image} alt={title} />
       </Card.Section>
 
