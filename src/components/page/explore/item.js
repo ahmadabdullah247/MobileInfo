@@ -45,9 +45,9 @@ export function CardWithStats({ image, title, description, stats }: CardWithStat
   ));
 
   return (
-    <Card withBorder p="lg" className={classes.card}>
-      <Card.Section p="xl">
-        <Image src={image} alt={title} />
+    <Card withBorder p="md" className={classes.card}>
+      <Card.Section p="xs">
+        <Image src={ image} alt={title} height={120} fit="contain" withPlaceholder/>
       </Card.Section>
 
       <Group position="apart" mt="xl">

@@ -6,7 +6,7 @@ import { BreadcrumbsComponent } from '../../common/breadcrumb'
 import { InputWithButton } from './compareWith'
 
 
-interface TableReviewsProps {
+interface ProductDetailProps {
   data: {
     title: string;
     author: string;
@@ -15,7 +15,7 @@ interface TableReviewsProps {
   }[];
 }
 
-export function TableReviews({ data }: TableReviewsProps) {
+export function ProductDetail({ data }: ProductDetailProps) {
   const image =  "https://i.hood.de/fit-in/3000x3000/filters:no_upscale()/images/50144/501441090.jpg"
   const title= "Iphone 13"
   return (

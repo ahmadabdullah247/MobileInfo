@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStyles, Container, Title, Text, Button, Group } from '@mantine/core';
 import { Illustration } from './Illustration';
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -64,7 +65,9 @@ export function Error() {
             page has been moved to another URL. If you think this is an error contact support.
           </Text>
           <Group position="center">
-            <Button size="md">Take me back to home page</Button>
+            <Link to="/">
+              <Button size="md">Take me back to home page</Button>
+            </Link>
           </Group>
         </div>
       </div>
