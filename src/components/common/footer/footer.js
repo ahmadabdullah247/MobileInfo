@@ -61,7 +61,6 @@ export function Footer({ links }: FooterProps) {
       {link.label}
     </Anchor>
   ));
-  console.log({items})
 
   return (
     <div className={classes.footer}>

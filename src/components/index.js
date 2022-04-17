@@ -28,6 +28,7 @@ export function Main() {
           <Routes>
             <Route path="/contact" element={ <ContactUs/>} />
             <Route path="/compare" element={ <ProductDetail/> } />
+            <Route path="/detail/:index" element={ <ProductDetail/> } />
             <Route path="/error" element={ <Error/>} />
             <Route path="/" element={ <Explore/> } />
           </Routes>

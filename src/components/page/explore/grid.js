@@ -10,8 +10,31 @@ import { MobileContext } from "../../index"
 // import {} from '../../../downloads'
 
 export function Explore() {
-  const mobiles = useContext(MobileContext)
+  let mobiles = useContext(MobileContext)
+  const sortMobiles = e => {
+    let option = e.target.value
+    console.log(typeof(mobiles))
+    switch(option){
+      case 'All':
+        break
+      case 'Most Popular':
+        break
+      case 'Most Popular':
+        break   
+      case 'New Arrivals':
+        break
+      case 'Up Coming':
+        break
+      case 'Price high to low':
+        console.log(option)
+        // mobiles = mobiles.sor
+        break           
+      case 'Price low to high':
+        console.log(option)
 
+        break                      
+    }
+  }
   return (
     <>
       <Grid>
@@ -19,7 +42,7 @@ export function Explore() {
           <BreadcrumbsComponent/>
         </Grid.Col>
         <Grid.Col span={2}>
-          <Input component="select" rightSection={<ChevronRight />}>
+          <Input component="select" rightSection={<ChevronRight />} onChange={ sortMobiles } >
             <option value="All">All</option>
             <option value="Most Popular">Most Popular</option>
             <option value="New Arrivals">New Arrivals</option>
@@ -32,20 +55,20 @@ export function Explore() {
       <Space h="md" />
       <Grid>
           {
-            // Object.keys(mobiles).slice(0,12).map(key=>{
-            Object.keys(mobiles).map(key=>{
-
+            // Object.keys(mobiles).map(_key=>{
+            Object.keys(mobiles).splice(0,6).map(index=>{
+              console.log({index})
               return (
-                <Grid.Col md={6} lg={3} key={mobiles[key]['brand']+mobiles[key]['title']}>
-                  <Link key={mobiles[key]['brand']+mobiles[key]['title']} to={'/detail/'+mobiles[key]['brand'].toLowerCase()+'/'+mobiles[key]['title'].toLowerCase()} style={{textDecoration:'none'}}>
+                <Grid.Col md={6} lg={3} key={mobiles[index]['brand']+mobiles[index]['title']}>
+                  <Link key={mobiles[index]['brand']+mobiles[index]['title']} to={{ pathname:`/detail/${index}`}} state={index}  style={{textDecoration:'none'}}>
                       <CardWithStats
-                      image={mobiles[key]['imgs'][0] }
-                      title={mobiles[key]['title']}
-                      description={ mobiles[key]['brand']+" • 2022 • "+ mobiles[key]['platform']}
+                      image={mobiles[index]['imgs'][0] }
+                      title={mobiles[index]['title']}
+                      description={ mobiles[index]['brand']+" • 2022 • "+ mobiles[index]['platform']}
                       stats={
                         [
-                          { "title": "Price", "value": mobiles[key]['price']},
-                          { "title": "Avg. rating", "value": mobiles[key]['rating'] }
+                          { "title": "Price", "value": mobiles[index]['price']},
+                          { "title": "Avg. rating", "value": mobiles[index]['rating']+" / 5" }
                         ]
                       }
                       />
