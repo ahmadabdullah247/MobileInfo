@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Table, ScrollArea,
-        Group, Avatar, Image,Text, Space, ActionIcon, Input, useMantineTheme, Autocomplete } from '@mantine/core';
-import { Star } from 'tabler-icons-react';
+        // Group, Avatar, 
+        Image,Text, Space, ActionIcon, useMantineTheme, Autocomplete } from '@mantine/core';
+// import { Star } from 'tabler-icons-react';
 import { BreadcrumbsComponent } from '../../common/breadcrumb'
 import  {useLocation} from 'react-router-dom'
 import { MobileContext } from "../../index"
@@ -11,6 +12,7 @@ import { DeviceMobile, Plus } from 'tabler-icons-react';
 export function ProductDetail() {
   const [searchMobile, setSearchMobile] = useState('');
   const [selectedMobiles, setSelectedMobiles] = useState([]);
+
 
   const theme = useMantineTheme();
   const location = useLocation()

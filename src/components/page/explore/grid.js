@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { CardWithStats } from '../explore/item'
 import { CardWithStats } from './item'
 
 import { Grid, Space, Input } from '@mantine/core';
@@ -7,7 +6,6 @@ import { BreadcrumbsComponent } from '../../common/breadcrumb'
 import {  ChevronRight } from 'tabler-icons-react';
 import { Link } from "react-router-dom";
 import { MobileContext } from "../../index"
-// import {} from '../../../downloads'
 
 export function Explore() {
   let mobiles = useContext(MobileContext)
@@ -19,8 +17,6 @@ export function Explore() {
         break
       case 'Most Popular':
         break
-      case 'Most Popular':
-        break   
       case 'New Arrivals':
         break
       case 'Up Coming':
@@ -31,8 +27,9 @@ export function Explore() {
         break           
       case 'Price low to high':
         console.log(option)
-
-        break                      
+        break  
+      default:
+        console.log('default')                    
     }
   }
   return (
