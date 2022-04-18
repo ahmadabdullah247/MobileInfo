@@ -10,7 +10,6 @@ import { DeviceMobile, Plus } from 'tabler-icons-react';
 
 export function ProductDetail() {
   const [searchMobile, setSearchMobile] = useState('');
-  const [selectedMobile, setSelectedMobile] = useState();
   const [selectedMobiles, setSelectedMobiles] = useState([]);
 
   const theme = useMantineTheme();
@@ -18,7 +17,6 @@ export function ProductDetail() {
   const mobiles = useContext(MobileContext)
   const path = window.location.pathname
   
-  let mobile = undefined
   let tableHead = <th>Table Head</th>
   let tableBody = <tr><td>Table Body</td></tr>
   const mobileTitles = Object.values(mobiles).map(value => value['title'])
@@ -32,7 +30,6 @@ export function ProductDetail() {
     const timeoutId = setTimeout(() => {
       console.log(`I can see you're not typing. I can use "${searchMobile}" now!`)
       let index = mobileTitles.findIndex(index => index === searchMobile)
-      setSelectedMobile(mobiles[index])
       setSelectedMobiles(selectedMobiles => [...selectedMobiles, mobiles[index]])
     }, 1000);
 
@@ -55,7 +52,6 @@ export function ProductDetail() {
                 ) 
   }  
 
-  console.log()
   if(path.includes('/detail') && selectedMobiles.filter(element => element !== undefined).length === 0){
     const { state } = location
     setSelectedMobiles(selectedMobiles => [...selectedMobiles, mobiles[state]])
