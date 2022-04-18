@@ -1,95 +1,103 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Table, ScrollArea,
-        Group, Avatar, Image,Text, Space } from '@mantine/core';
+        Group, Avatar, Image,Text, Space, ActionIcon, Input, useMantineTheme, Autocomplete } from '@mantine/core';
 import { Star } from 'tabler-icons-react';
 import { BreadcrumbsComponent } from '../../common/breadcrumb'
-import { InputWithButton } from './compareWith'
 import  {useLocation} from 'react-router-dom'
 import { MobileContext } from "../../index"
+import { DeviceMobile, Plus } from 'tabler-icons-react';
 
 
-interface ProductDetailProps {
-  data: {
-    title: string;
-    author: string;
-    year: number;
-    reviews: { positive: number; negative: number };
-  }[];
-}
+export function ProductDetail() {
+  const [searchMobile, setSearchMobile] = useState('');
+  const [selectedMobile, setSelectedMobile] = useState();
+  const [selectedMobiles, setSelectedMobiles] = useState([]);
 
-export function ProductDetail({ data }: ProductDetailProps) {
-  let mobiles = useContext(MobileContext)
-  const location  = useLocation()
+  const theme = useMantineTheme();
+  const location = useLocation()
+  const mobiles = useContext(MobileContext)
+  const path = window.location.pathname
+  
+  let mobile = undefined
+  let tableHead = <th>Table Head</th>
+  let tableBody = <tr><td>Table Body</td></tr>
+  const mobileTitles = Object.values(mobiles).map(value => value['title'])
   const attributes = ['rating','brand','display','displayTechnology',
   'resolution','platform','processor','backCamera','frontCamera','storage',
   'memory','technology','battery','weight','dimensions','colors','topFeature']
-  const { state } = location
-  let mobile = undefined
-  if (state){
-    mobile = mobiles[state]
-  }
 
-  return (
-      <>    
-        <BreadcrumbsComponent/>
-         <Space h="md" />
-        <InputWithButton/>
-     <Space h="md" />
-      <ScrollArea>
-      <Table sx={{ minWidth: 800 }} verticalSpacing="xs">
-        <thead>
-          <tr>
-            <th></th>
-            <th>
-                <div>
+  const addMobile = event => setSearchMobile(event)
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      console.log(`I can see you're not typing. I can use "${searchMobile}" now!`)
+      let index = mobileTitles.findIndex(index => index === searchMobile)
+      setSelectedMobile(mobiles[index])
+      setSelectedMobiles(selectedMobiles => [...selectedMobiles, mobiles[index]])
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchMobile]);
+
+  const tableContent = (mobiles) => {
+    tableHead = mobiles.map(mobile=>
+                  <th key={mobile['title']}>
                     <Image src={ mobile['imgs'][0] } alt={ mobile['title'] } height={120} withPlaceholder fit="contain"/>
                     <Text align="center">{mobile['title']}</Text>
                     <Text align="center">{mobile['price']}</Text>
-                </div> 
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-            {
-               attributes.map(key=>{
-                   if (key=='rating'){
-                    return (
-                        <tr>
-                            <td> <strong>{ key.toUpperCase() }</strong> </td>
-                            <td align="center">
-                                { mobile[key] }
-                                {/* <Group position="left" spacing="xs">
-                                    <Avatar color="yellow" radius="xl" size={30}>
-                                        <Star size={16} />
-                                    </Avatar>
-                                    <Avatar color="yellow" radius="xl" size={30}>
-                                        <Star size={16} />
-                                    </Avatar>          
-                                    <Avatar color="yellow" radius="xl" size={30}>
-                                        <Star size={16} />
-                                    </Avatar>          
-                                    <Avatar color="yellow" radius="xl" size={30}>
-                                        <Star size={16} color="black" />
-                                    </Avatar>          
-                                    <Avatar color="yellow" radius="xl" size={30}>
-                                        <Star size={16} />
-                                    </Avatar>
-                                </Group> */}
-                            </td>
-                        </tr>
-                    )
-                   }
-                    return( <tr>
-                                <td> <strong>{ key.toUpperCase() }</strong> </td>
-                                <td align="center"> { mobile[key] } </td>
-                            </tr>
-                    )
-                })
-                
-            }
-        </tbody>
-      </Table>
-    </ScrollArea>
+                  </th>
+                )
+    tableBody = attributes.map(key=>
+                  <tr key={ key }>
+                    <td> <strong>{ key.toUpperCase() }</strong> </td>
+                    {mobiles.map(mobile=>  <td align="center"> { mobile[key] } </td>)}
+                  </tr>
+                ) 
+  }  
+
+  console.log()
+  if(path.includes('/detail') && selectedMobiles.filter(element => element !== undefined).length === 0){
+    const { state } = location
+    setSelectedMobiles(selectedMobiles => [...selectedMobiles, mobiles[state]])
+  }
+  tableContent(selectedMobiles.filter(element => element !== undefined))
+
+
+  return (
+    <>    
+      <BreadcrumbsComponent/>
+      <Space h="md" />
+      <Autocomplete
+        icon={<DeviceMobile size={16} />}
+        placeholder="Search mobile to compare"
+        data={ Object.values(mobiles).map(value=> value['title']) }
+        value = { searchMobile }
+        radius="xl"
+        size="md"
+        limit= { 5 }
+        rightSectionWidth={42}
+        styles={{ rightSection: { pointerEvents: 'none' } }}
+        rightSection={
+          <ActionIcon size={32} radius="xl" variant="filled" color={theme.primaryColor} >
+            <Plus size={18} />
+          </ActionIcon>
+        }
+        onChange={ addMobile }
+      />
+      <Space h="md" />
+      <ScrollArea>
+        <Table  verticalSpacing="xs">
+          <thead>
+            <tr>
+              <th></th>
+              { tableHead }
+            </tr>
+          </thead>
+          <tbody>
+              { tableBody }
+          </tbody>
+        </Table>
+      </ScrollArea>
     </>
   );
 }

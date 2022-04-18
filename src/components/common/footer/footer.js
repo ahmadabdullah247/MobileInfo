@@ -66,7 +66,7 @@ export function Footer({ links }: FooterProps) {
     <div className={classes.footer}>
       <Container className={classes.inner}>
         <Text color="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved by TDN.
+          © 2022 MobileInfo.pk. All rights reserved by TDN.
         </Text>
         <Group >{items}</Group>
       </Container>

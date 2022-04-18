@@ -55,9 +55,8 @@ export function Explore() {
       <Space h="md" />
       <Grid>
           {
-            // Object.keys(mobiles).map(_key=>{
-            Object.keys(mobiles).splice(0,6).map(index=>{
-              console.log({index})
+            // Object.keys(mobiles).map(index=>{
+            Object.keys(mobiles).splice(0,12).map(index=>{
               return (
                 <Grid.Col md={6} lg={3} key={mobiles[index]['brand']+mobiles[index]['title']}>
                   <Link key={mobiles[index]['brand']+mobiles[index]['title']} to={{ pathname:`/detail/${index}`}} state={index}  style={{textDecoration:'none'}}>
